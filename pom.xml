@@ -10,12 +10,12 @@
     <packaging>pom</packaging>
 
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.9.RELEASE</version>
-        <relativePath/>
-    </parent>
+<!--    <parent>-->
+<!--        <groupId>org.springframework.boot</groupId>-->
+<!--        <artifactId>spring-boot-starter-parent</artifactId>-->
+<!--        <version>2.3.9.RELEASE</version>-->
+<!--        <relativePath/>-->
+<!--    </parent>-->
 
     <properties>
         <java.version>1.8</java.version>
@@ -33,6 +33,8 @@
         <build.id>1</build.id>
         <guava.verson>30.1-jre</guava.verson>
         <lombok.version>1.18.18</lombok.version>
+        <spring.boot.version>2.3.9.RELEASE</spring.boot.version>
+
     </properties>
 
     <profiles>
@@ -46,6 +48,7 @@
                     <plugin>
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-maven-plugin</artifactId>
+                        <version>${spring.boot.version}</version>
                     </plugin>
                 </plugins>
             </build>
@@ -54,6 +57,18 @@
             </activation>
         </profile>
     </profiles>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -102,12 +117,6 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>net.sourceforge.jtds</groupId>
-            <artifactId>jtds</artifactId>
-            <version>${jtds.version}</version>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
